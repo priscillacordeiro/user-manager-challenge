@@ -1,6 +1,8 @@
 package io.github.priscillacordeiro.usermanagerchallenge.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,11 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
 import io.github.priscillacordeiro.usermanagerchallenge.repository.UserRepository;
-import io.github.priscillacordeiro.usermanagerchallenge.util.HibernateUtil;
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {
-	
+
 	private UserRepository userRepository = new UserRepository();
 
 	@Override
@@ -25,6 +26,8 @@ public class UserServlet extends HttpServlet {
 		switch (action) {
 		case "/new":
 			showUserForm(request, response);
+		case "/list":
+			showUserList(request, response);
 		}
 	}
 
@@ -41,21 +44,27 @@ public class UserServlet extends HttpServlet {
 
 	private void showUserForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("name", "Dora");
 		request.getRequestDispatcher("/user-form.jsp").forward(request, response);
 	}
-	
+
 	private void createUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
+
 		User user = new User(name, email, password);
-		
+
 		userRepository.create(user);
-		
-		request.getRequestDispatcher("/user-form.jsp").forward(request, response);		
+
+		response.sendRedirect("list");
 	}
-	
+
+	private void showUserList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<User> listUser = userRepository.getAll();
+		request.setAttribute("listUser", listUser);
+		request.getRequestDispatcher("/user-list.jsp").forward(request, response);
+	}
+
 }
