@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
+import io.github.priscillacordeiro.usermanagerchallenge.repository.UserRepository;
 import io.github.priscillacordeiro.usermanagerchallenge.util.HibernateUtil;
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {
+	
+	private UserRepository userRepository = new UserRepository();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,6 +52,8 @@ public class UserServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		User user = new User(name, email, password);
+		
+		userRepository.create(user);
 		
 		request.getRequestDispatcher("/user-form.jsp").forward(request, response);		
 	}
