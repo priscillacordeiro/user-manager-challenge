@@ -74,5 +74,24 @@ public class UserRepository {
         }
         return user;
 	}
+	
+	public void delete(Long id) {
+		Transaction transaction = null;
+		
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            User user = session.get(User.class, id);
+            
+            if (user != null) {
+                session.delete(user);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+	}
 
 }

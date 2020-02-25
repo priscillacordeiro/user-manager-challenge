@@ -33,8 +33,12 @@ public class UserServlet extends HttpServlet {
 		case "/edit":
 			showUserForm(request, response);
 			break;
+		case "/delete":
+			deleteUser(request, response);
+			break;
 		}
 	}
+
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -93,8 +97,14 @@ public class UserServlet extends HttpServlet {
 		User user = new User(id, name, email, password);
 
 		userRepository.update(user);
-
 		response.sendRedirect("list");
 	}
 
+	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 
+		throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));	
+		
+		userRepository.delete(id);
+		response.sendRedirect("list");	
+	}
 }
