@@ -26,8 +26,13 @@ public class UserServlet extends HttpServlet {
 		switch (action) {
 		case "/new":
 			showUserForm(request, response);
+			break;
 		case "/list":
 			showUserList(request, response);
+			break;
+		case "/edit":
+			showUserForm(request, response);
+			break;
 		}
 	}
 
@@ -39,12 +44,30 @@ public class UserServlet extends HttpServlet {
 		switch (action) {
 		case "/create":
 			createUser(request, response);
+			break;
+		case "/update":
+			updateUser(request, response);
+			break;
 		}
 	}
 
 	private void showUserForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		if (request.getParameter("id") != null) {
+			Long id = Long.parseLong(request.getParameter("id"));
+			User user = userRepository.getById(id);
+
+			request.setAttribute("user", user);
+		}
 		request.getRequestDispatcher("/user-form.jsp").forward(request, response);
+	}
+
+	private void showUserList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<User> listUser = userRepository.getAll();
+		request.setAttribute("listUser", listUser);
+		request.getRequestDispatcher("/user-list.jsp").forward(request, response);
 	}
 
 	private void createUser(HttpServletRequest request, HttpServletResponse response)
@@ -60,11 +83,18 @@ public class UserServlet extends HttpServlet {
 		response.sendRedirect("list");
 	}
 
-	private void showUserList(HttpServletRequest request, HttpServletResponse response)
+	private void updateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<User> listUser = userRepository.getAll();
-		request.setAttribute("listUser", listUser);
-		request.getRequestDispatcher("/user-list.jsp").forward(request, response);
+		Long id = Long.parseLong(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		User user = new User(id, name, email, password);
+
+		userRepository.update(user);
+
+		response.sendRedirect("list");
 	}
 
 }

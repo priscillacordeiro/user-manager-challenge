@@ -10,7 +10,7 @@
 	<body>
 		<p>User list</p>
 		<c:forEach 	var="user" items="${listUser}">
-		<p>${user.name}</p>
+			<p>${user.name}</p> <a href="edit?id=${user.id}">edit</a>
 		</c:forEach>
 	</body>
 </html>

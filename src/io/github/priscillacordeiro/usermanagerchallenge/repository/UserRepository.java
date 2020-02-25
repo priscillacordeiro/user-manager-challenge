@@ -1,6 +1,5 @@
 package io.github.priscillacordeiro.usermanagerchallenge.repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -41,6 +40,39 @@ public class UserRepository {
             e.printStackTrace();
         }
 		return userList;
+	}
+	
+	public User getById(Long id) {
+		Transaction transaction = null;
+		User user = null;
+		
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+    		user = session.get(User.class, id);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return user;
+	}
+
+	public User update(User user) {
+		Transaction transaction = null;
+		
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.update(user);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return user;
 	}
 
 }
