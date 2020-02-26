@@ -23,7 +23,7 @@
 		<c:if test="${user != null}">
 			<a href="/user-manager-challenge/phones/new?userId=${user.id}">Add phone</a>
 			<c:forEach var="phone" items="${user.phones}">
-				<p>${phone.ddd} - ${phone.number} - ${phone.type}</p>
+				<p>${phone.ddd} - ${phone.number} - ${phone.type} <a href="/user-manager-challenge/phones/edit?userId=${phone.user.id}&id=${phone.id}">edit</a> <a href="/user-manager-challenge/phones/delete?id=${phone.id}">delete</a> </p>
 			</c:forEach>
 	  	</c:if>
 	</body>

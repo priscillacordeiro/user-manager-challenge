@@ -11,7 +11,7 @@
 		<p>User list</p>
 		<a href="new">add user</a>
 		<c:forEach 	var="user" items="${listUser}">
-			<p>${user.name}</p> <a href="edit?id=${user.id}">edit</a> <a href="delete?id=${user.id}">delete</a>
+			<p>${user.name} <a href="edit?id=${user.id}">edit</a> <a href="delete?id=${user.id}">delete</a> </p> 
 		</c:forEach>
 	</body>
 </html>

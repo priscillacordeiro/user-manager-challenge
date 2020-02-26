@@ -26,13 +26,10 @@ public class PhoneServlet extends HttpServlet {
 		case "/new":
 			showPhoneForm(request, response);
 			break;
-		/*case "/list":
-			showUserList(request, response);
-			break;
 		case "/edit":
-			showUserForm(request, response);
+			showPhoneForm(request, response);
 			break;
-		case "/delete":
+		/*case "/delete":
 			deleteUser(request, response);
 			break;*/
 		}
@@ -55,7 +52,18 @@ public class PhoneServlet extends HttpServlet {
 
 	private void updatePhone(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		int ddd = Integer.parseInt(request.getParameter("ddd"));
+		String number = request.getParameter("number");
+		String type = request.getParameter("type");
+		Long userId = Long.parseLong(request.getParameter("userId"));
 		
+		User user = new User(userId);
+		Phone phone = new Phone(id, ddd, number, type, user);
+		
+		phoneRepository.update(phone);
+		
+		response.sendRedirect("/user-manager-challenge/users/edit?id=" + userId);
 	}
 
 	private void createPhone(HttpServletRequest request, HttpServletResponse response) 
@@ -75,6 +83,14 @@ public class PhoneServlet extends HttpServlet {
 
 	private void showPhoneForm(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		
+		if (request.getParameter("id") != null) {
+			Long id = Long.parseLong(request.getParameter("id"));
+			Phone phone = phoneRepository.getById(id);
+
+			request.setAttribute("phone", phone);
+		}
+		
 		Long userId = Long.parseLong(request.getParameter("userId"));
 		
 		request.setAttribute("userId", userId);
