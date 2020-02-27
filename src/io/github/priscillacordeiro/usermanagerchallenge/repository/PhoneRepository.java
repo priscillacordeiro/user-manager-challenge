@@ -58,4 +58,23 @@ public class PhoneRepository {
         return phone;
 	}
 
+	public void delete(Long id) {
+		Transaction transaction = null;
+		
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Phone phone = session.get(Phone.class, id);
+            
+            if (phone != null) {
+                session.delete(phone);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }		
+	}
+
 }

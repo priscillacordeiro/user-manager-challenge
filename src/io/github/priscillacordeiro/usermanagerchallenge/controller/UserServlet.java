@@ -53,6 +53,19 @@ public class UserServlet extends HttpServlet {
 			break;
 		}
 	}
+	
+	private void createUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		User user = new User(name, email, password);
+		
+		userRepository.create(user);
+		
+		response.sendRedirect("list");
+	}
 
 	private void showUserForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -71,19 +84,6 @@ public class UserServlet extends HttpServlet {
 		List<User> listUser = userRepository.getAll();
 		request.setAttribute("listUser", listUser);
 		request.getRequestDispatcher("/user-list.jsp").forward(request, response);
-	}
-
-	private void createUser(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-
-		User user = new User(name, email, password);
-
-		userRepository.create(user);
-
-		response.sendRedirect("list");
 	}
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response)
@@ -106,4 +106,5 @@ public class UserServlet extends HttpServlet {
 		userRepository.delete(id);
 		response.sendRedirect("list");	
 	}
+	
 }
