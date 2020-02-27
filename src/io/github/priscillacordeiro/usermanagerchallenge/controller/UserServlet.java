@@ -1,7 +1,6 @@
 package io.github.priscillacordeiro.usermanagerchallenge.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,6 +14,7 @@ import io.github.priscillacordeiro.usermanagerchallenge.repository.UserRepositor
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	private UserRepository userRepository = new UserRepository();
 

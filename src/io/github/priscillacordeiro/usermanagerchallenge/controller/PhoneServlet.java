@@ -14,6 +14,7 @@ import io.github.priscillacordeiro.usermanagerchallenge.repository.PhoneReposito
 
 @WebServlet("/phones/*")
 public class PhoneServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	
 	private PhoneRepository phoneRepository = new PhoneRepository();
 	

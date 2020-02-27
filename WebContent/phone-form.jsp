@@ -9,17 +9,17 @@
 	</head>
 	<body>
 		<c:if test="${phone == null}">
-			<form action="create" method="post">
+		<form action="create" method="post">
  	 	</c:if>
  		<c:if test="${phone != null}">
-			<form action="update" method="post">
+		<form action="update" method="post">
 			<input type="hidden" name="id" value="${phone.id}"/>
 	  	</c:if>
 	  		<input type="hidden" name="userId" value="${userId}"/>
 			<p>DDD:</p> <input type="number" name="ddd" value="${phone.ddd}"/>
 			<p>Number:</p> <input type="text" name="number" value="${phone.number}"/>
 			<p>Type:</p> <input type="text" name="type" value="${phone.type}"/>
-			<input type="submit"/>
+			<p><input type="submit" value="Save"/></p>
 		</form>
 	</body>
 </html>

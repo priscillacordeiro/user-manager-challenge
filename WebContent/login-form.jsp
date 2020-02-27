@@ -5,13 +5,13 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>User Management</title>
+		<title>User Manager - Login</title>
 	</head>
 	<body>
-		<p>User list</p>
-		<a href="new">add user</a>
-		<c:forEach 	var="user" items="${listUser}">
-		<p>${user.name} <a href="edit?id=${user.id}">edit</a> <a href="delete?id=${user.id}">delete</a> </p> 
-		</c:forEach>
+		<form action="/user-manager-challenge/login" method="post">
+			<p>E-mail: </p><input type="email" name="email"/>
+			<p>Password: </p><input type="password" name="password"/>
+			<p><input type="submit" value="Login"/></p>
+		</form>
 	</body>
 </html>

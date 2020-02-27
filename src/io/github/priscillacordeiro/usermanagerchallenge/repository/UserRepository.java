@@ -58,6 +58,23 @@ public class UserRepository {
         }
         return user;
 	}
+	
+	public User getByEmail(String email) {
+		Transaction transaction = null;
+		User user = null;
+		
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+    		user = (User) session.createQuery("from User where email = :email").setParameter("email", email).getSingleResult();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return user;
+	}
 
 	public User update(User user) {
 		Transaction transaction = null;

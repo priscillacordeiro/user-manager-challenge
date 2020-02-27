@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import io.github.priscillacordeiro.usermanagerchallenge.model.Phone;
-import io.github.priscillacordeiro.usermanagerchallenge.model.User;
 import io.github.priscillacordeiro.usermanagerchallenge.util.HibernateUtil;
 
 public class PhoneRepository {
