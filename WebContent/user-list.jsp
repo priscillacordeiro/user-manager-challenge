@@ -8,7 +8,7 @@
 		<title>User Management</title>
 	</head>
 	<body>
-		<p>User list</p>
+		<p>User list</p> <p>Hi, ${name}! <a href="/user-manager-challenge/logout">logout</a></p>
 		<a href="new">add user</a>
 		<c:forEach 	var="user" items="${listUser}">
 		<p>${user.name} <a href="edit?id=${user.id}">edit</a> <a href="delete?id=${user.id}">delete</a> </p> 
