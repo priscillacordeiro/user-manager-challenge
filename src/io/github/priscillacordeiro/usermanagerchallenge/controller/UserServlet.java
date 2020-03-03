@@ -30,6 +30,9 @@ public class UserServlet extends HttpServlet {
 		case "/list":
 			showUserList(request, response);
 			break;
+		case "/view":
+			showUserView(request, response);
+			break;
 		case "/edit":
 			showUserForm(request, response);
 			break;
@@ -85,6 +88,15 @@ public class UserServlet extends HttpServlet {
 		request.setAttribute("listUser", listUser);
 		request.getRequestDispatcher("/user-list.jsp").forward(request, response);
 	}
+	
+	private void showUserView(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		Long id = Long.parseLong(request.getParameter("id"));
+		User user = userRepository.getById(id);
+		
+		request.setAttribute("user", user);
+		request.getRequestDispatcher("/user-view.jsp").forward(request, response);
+	}
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -96,7 +108,7 @@ public class UserServlet extends HttpServlet {
 		User user = new User(id, name, email, password);
 
 		userRepository.update(user);
-		response.sendRedirect("list");
+		response.sendRedirect("view?id=" + id);
 	}
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 

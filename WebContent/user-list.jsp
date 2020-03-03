@@ -24,7 +24,9 @@
 			</thead>
 			<tbody>
 				<c:forEach 	var="user" items="${listUser}" varStatus="count">
-					<tr class="${(count.index % 2 == 0) ? 'list-item-white' : 'list-item-lilac'}">	
+					<tr onclick="location.href = 'view?id=${user.id}'" 
+						class="${(count.index % 2 == 0) ? 'list-item-white' : 'list-item-lilac'} cursor-pointer">	
+						
 						<td><img src="/user-manager-challenge/img/user_icon.png" class="user-icon"></td>
 						<td>${user.id}</td> 
 						<td>${user.name}</td> 

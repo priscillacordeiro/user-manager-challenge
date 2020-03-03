@@ -37,20 +37,13 @@
 			<p>
 				<input class="save-button" type="submit" value="SAVE"/>
 			</p>
-		</form>
-			<c:if test="${user != null}">
-			<a href="/user-manager-challenge/phones/new?userId=${user.id}">Add phone</a>
-			<c:forEach var="phone" items="${user.phones}">
-			<p>
-				${phone.ddd} - ${phone.number} - ${phone.type} 
-				<a href="/user-manager-challenge/phones/edit?userId=${phone.user.id}&id=${phone.id}">edit</a> 
-				<a href="/user-manager-challenge/phones/delete?userId=${phone.user.id}&id=${phone.id}">delete</a> 
-			</p>
-			</c:forEach>
-		  	</c:if>
+			</form>
 	  	</div>
 		<div class="center footer">
-			<a class="link-button" href="list">Back</a>
+			<a class="link-button" href="list">Back</a> 
+			<c:if test="${user != null}">
+				<a class="link-delete" href="delete?id=${user.id}">Delete user</a>
+			</c:if>
 		</div>	
 	</body>
 </html>
