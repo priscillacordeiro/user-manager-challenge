@@ -9,10 +9,22 @@
 		<link rel="stylesheet" href="/user-manager-challenge/css/main.css">
 	</head>
 	<body>
-		<form action="/user-manager-challenge/login" method="post">
-			<p>E-mail: </p><input type="email" name="email"/>
-			<p>Password: </p><input type="password" name="password"/>
-			<p><input type="submit" value="Login"/></p>
-		</form>
+		<div class="center login-section">
+			<img src="/user-manager-challenge/img/home_logo.png" class="home-logo">
+			<form action="/user-manager-challenge/login" method="post">
+				<div class="form-line">
+					<input class="form-input-login user-login-icon" type="email" name="email" placeholder="E-mail"/>
+				</div>
+				<br>
+				<br>
+				<div class="form-line">
+					<input class="form-input-login password-login-icon" type="password" name="password" placeholder="Password"/>
+				</div>
+				<br>
+				<div class="center footer">
+					<p><input class="login-button" type="submit" value="LOGIN"/></p>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>

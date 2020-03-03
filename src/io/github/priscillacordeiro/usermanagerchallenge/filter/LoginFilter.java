@@ -13,20 +13,24 @@ import javax.servlet.http.HttpServletRequest;
 @WebFilter("*")
 public class LoginFilter implements Filter {
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-		
-		if(httpServletRequest.getSession().getAttribute("name") != null) {
+		String servletPath = httpServletRequest.getServletPath();
+
+		if (httpServletRequest.getSession().getAttribute("name") != null 
+				|| servletPath.startsWith("/css/")
+				|| servletPath.startsWith("/img/")) {
 			chain.doFilter(request, response);
 		} else {
 			request.getRequestDispatcher("/login").forward(request, response);
 		}
 	}
-	
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 	}
-	
+
 	@Override
 	public void destroy() {
 	}

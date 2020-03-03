@@ -72,6 +72,13 @@ td:last-child {
   border-radius: 19px;
 }
 
+.home-logo {
+  width: 200px;
+  object-fit: contain;
+  border-radius: 19px;
+  margin-bottom: 30px;
+}
+
 .link-button:link, .link-button:visited{
   color: #000;
   width: 100px;
@@ -142,4 +149,49 @@ td:last-child {
   letter-spacing: normal;
   text-align: left;
   color: #ae4242;
+}
+
+.login-section {
+  background-color: #fff;
+  padding-top: 60px;
+  padding-bottom: 70px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  margin-top: 80px;
+}
+
+.form-input-login {
+  width: 300px;
+  height: 30px;
+  border-radius: 26px;
+  box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.30);
+  border: solid 1px rgba(112, 112, 112, 0.20);
+  background-color: #000;
+  padding-left: 32px;
+  padding-right: 10px;
+  outline: none;
+}
+
+.user-login-icon {
+  background: url(/user-manager-challenge/img/user_icon.png) no-repeat scroll 4px 4px;
+  background-size: 24px 24px;
+}
+
+.password-login-icon {
+  background: url(/user-manager-challenge/img/password_icon.png) no-repeat scroll 6px 6px;
+  background-size: 20px 20px;
+}
+
+.login-button {
+  width: 345px;
+  height: 34px;
+  border-radius: 26px;
+  background-color: #d1cbcf;
+  border-width: 0;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
 }
