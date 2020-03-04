@@ -195,3 +195,7 @@ td:last-child {
   font-weight: bold;
   cursor: pointer;
 }
+
+.error {
+  color: #ae4242;
+}

@@ -9,6 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebFilter("*")
 public class LoginFilter implements Filter {
@@ -16,14 +17,16 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		String servletPath = httpServletRequest.getServletPath();
 
 		if (httpServletRequest.getSession().getAttribute("name") != null 
 				|| servletPath.startsWith("/css/")
-				|| servletPath.startsWith("/img/")) {
+				|| servletPath.startsWith("/img/")
+				|| servletPath.equals("/login")) {
 			chain.doFilter(request, response);
 		} else {
-			request.getRequestDispatcher("/login").forward(request, response);
+			httpServletResponse.sendRedirect("/user-manager-challenge/login");
 		}
 	}
 

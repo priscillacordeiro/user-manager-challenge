@@ -13,18 +13,19 @@
 			<img src="/user-manager-challenge/img/home_logo.png" class="home-logo">
 			<form action="/user-manager-challenge/login" method="post">
 				<div class="form-line">
-					<input class="form-input-login user-login-icon" type="email" name="email" placeholder="E-mail"/>
+					<input class="form-input-login user-login-icon" type="email" name="email" placeholder="E-mail" required/>
 				</div>
 				<br>
 				<br>
 				<div class="form-line">
-					<input class="form-input-login password-login-icon" type="password" name="password" placeholder="Password"/>
+					<input class="form-input-login password-login-icon" type="password" name="password" placeholder="Password" required/>
 				</div>
 				<br>
 				<div class="center footer">
 					<p><input class="login-button" type="submit" value="LOGIN"/></p>
 				</div>
 			</form>
+			<p class="error">${error}</p>
 		</div>
 	</body>
 </html>

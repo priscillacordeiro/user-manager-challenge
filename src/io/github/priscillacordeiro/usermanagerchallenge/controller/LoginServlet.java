@@ -33,7 +33,8 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("name", user.getName());
 			response.sendRedirect("/user-manager-challenge/users/list");
 		} else {
-			response.sendRedirect("/user-manager-challenge/login");
+			request.setAttribute("error", "E-mail or password invalid!");
+			request.getRequestDispatcher("/login-form.jsp").forward(request, response);
 		}
 	}
 

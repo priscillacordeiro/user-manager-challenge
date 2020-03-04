@@ -32,7 +32,7 @@
 			<br>
 			<div class="form-line">
 				<p class="form-label">Password:</p>
-				<input class="form-input" type="password" name="password" value="${user.password}" required maxlength="50"/>
+				<input class="form-input" type="password" name="password" value="${user.password}" required minlength="4" maxlength="50"/>
 			</div>
 			<p>
 				<input class="save-button" type="submit" value="SAVE"/>
