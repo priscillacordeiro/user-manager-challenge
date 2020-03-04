@@ -22,17 +22,17 @@
 		  	</c:if>
 			<div class="form-line">
 				<p class="form-label">Name:</p>
-				<input class="form-input" type="text" name="name" value="${user.name}"/>
+				<input class="form-input" type="text" name="name" value="${user.name}" required maxlength="100"/>
 			</div>
 			<br>
 			<div class="form-line">
 				<p class="form-label">E-mail:</p>
-				<input class="form-input" type="email" name="email" value="${user.email}"/>
+				<input class="form-input" type="email" name="email" value="${user.email}" required maxlength="100"/>
 			</div>
 			<br>
 			<div class="form-line">
 				<p class="form-label">Password:</p>
-				<input class="form-input" type="password" name="password" value="${user.password}"/>
+				<input class="form-input" type="password" name="password" value="${user.password}" required maxlength="50"/>
 			</div>
 			<p>
 				<input class="save-button" type="submit" value="SAVE"/>
@@ -40,8 +40,11 @@
 			</form>
 	  	</div>
 		<div class="center footer">
-			<a class="link-button" href="list">Back</a> 
+			<c:if test="${user == null}">
+				<a class="link-button" href="list">Back</a> 
+			</c:if>
 			<c:if test="${user != null}">
+				<a class="link-button" href="view?id=${user.id}">Back</a> 	
 				<a class="link-delete" href="delete?id=${user.id}">Delete user</a>
 			</c:if>
 		</div>	

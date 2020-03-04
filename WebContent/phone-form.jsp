@@ -23,17 +23,17 @@
 			<input type="hidden" name="userId" value="${userId}"/>
 			<div class="form-line">
 				<p class="form-label">DDD:</p>
-				<input class="form-input" type="number" name="ddd" value="${phone.ddd}"/>
+				<input class="form-input" type="number" name="ddd" value="${phone.ddd}" required max="999"/>
 			</div>
 			<br>
 			<div class="form-line">
 				<p class="form-label">Number:</p>
-				<input class="form-input" type="number" name="number" value="${phone.number}"/>
+				<input class="form-input" type="text" name="number" value="${phone.number}" required maxLength="20"/>
 			</div>
 			<br>
 			<div class="form-line">
 				<p class="form-label">Type:</p>
-				<input class="form-input" type="text" name="type" value="${phone.type}"/>
+				<input class="form-input" type="text" name="type" value="${phone.type}" maxlength="20"/>
 			</div>
 			<br>
 			<p>
@@ -42,7 +42,7 @@
 			</form>
 		</div>
 		<div class="center footer">
-			<a class="link-button" href="list">Back</a>
+			<a class="link-button" href="/user-manager-challenge/users/view?id=${userId}">Back</a>
 		</div>
 	</body>
 </html>
