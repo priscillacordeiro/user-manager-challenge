@@ -28,7 +28,8 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		User user = userRepository.getByEmail(email);
-		if(password.equals(user.getPassword())) {
+		
+		if(user != null && password.equals(user.getPassword())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("name", user.getName());
 			response.sendRedirect("/user-manager-challenge/users/list");
