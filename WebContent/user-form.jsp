@@ -38,6 +38,7 @@
 				<input class="save-button" type="submit" value="SAVE"/>
 			</p>
 			</form>
+			<p class="error">${error}</p>
 	  	</div>
 		<div class="center footer">
 			<c:if test="${user == null}">

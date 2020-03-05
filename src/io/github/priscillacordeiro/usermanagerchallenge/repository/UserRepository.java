@@ -31,7 +31,7 @@ public class UserRepository {
 		List<User> userList = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            userList = session.createQuery("from User").getResultList();
+            userList = session.createQuery("from User order by id").getResultList();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -60,17 +60,10 @@ public class UserRepository {
 	}
 	
 	public User getByEmail(String email) {
-		Transaction transaction = null;
 		User user = null;
-		
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
     		user = (User) session.createQuery("from User where email = :email").setParameter("email", email).getSingleResult();
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return user;

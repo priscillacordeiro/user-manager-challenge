@@ -65,9 +65,16 @@ public class UserServlet extends HttpServlet {
 		
 		User user = new User(name, email, password);
 		
-		userRepository.create(user);
+		User savedUser = userRepository.getByEmail(email);
 		
-		response.sendRedirect("list");
+		if(savedUser == null) {
+			userRepository.create(user);
+			response.sendRedirect("list");
+		} else {
+			request.setAttribute("error", "E-mail already exists!");
+			request.getRequestDispatcher("/user-form.jsp").forward(request, response);
+		}
+		
 	}
 
 	private void showUserForm(HttpServletRequest request, HttpServletResponse response)
@@ -105,10 +112,19 @@ public class UserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		User user = new User(id, name, email, password);
-
-		userRepository.update(user);
-		response.sendRedirect("view?id=" + id);
+		User formUser = new User(id, name, email, password);
+		
+		User emailUser = userRepository.getByEmail(email);
+		User originalUser = userRepository.getById(id);
+		
+		if(originalUser.getEmail().equals(email) || emailUser == null) {
+			userRepository.update(formUser);
+			response.sendRedirect("view?id=" + id);
+		} else {
+			request.setAttribute("user", formUser);
+			request.setAttribute("error", "E-mail already exists!");
+			request.getRequestDispatcher("/user-form.jsp").forward(request, response);
+		}
 	}
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 

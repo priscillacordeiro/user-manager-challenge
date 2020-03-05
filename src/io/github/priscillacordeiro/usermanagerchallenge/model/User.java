@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class User {
@@ -27,6 +28,7 @@ public class User {
 	@Column(length = 50, nullable = false)
 	private String password;
 	
+	@OrderBy("id")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Phone> phones;
 
