@@ -21,9 +21,9 @@ public class HibernateUtil {
 
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/user_manager?useTimezone=true&serverTimezone=America/Sao_Paulo");
-				settings.put(Environment.USER, "root");
-				settings.put(Environment.PASS, "root");
+				settings.put(Environment.URL, "jdbc:mysql://icopoghru9oezxh8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ch5mpztdvua7hpg9?useTimezone=true&serverTimezone=America/Sao_Paulo");
+				settings.put(Environment.USER, "zwc4tmqsdox2c5m9");
+				settings.put(Environment.PASS, "d7zljt9oiul7nckk");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
 				settings.put(Environment.SHOW_SQL, "true");
