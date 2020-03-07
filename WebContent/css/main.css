@@ -176,12 +176,12 @@ td:last-child {
 }
 
 .user-login-icon {
-  background: url(/user-manager-challenge/img/user_icon.png) no-repeat scroll 4px 4px;
+  background: url(/user-manager-challenge/img/icon_user.png) no-repeat scroll 4px 4px;
   background-size: 24px 24px;
 }
 
 .password-login-icon {
-  background: url(/user-manager-challenge/img/password_icon.png) no-repeat scroll 6px 6px;
+  background: url(/user-manager-challenge/img/icon_password.png) no-repeat scroll 6px 6px;
   background-size: 20px 20px;
 }
 
@@ -198,4 +198,21 @@ td:last-child {
 
 .error {
   color: #ae4242;
+}
+
+.icon-small {
+	width: 18px;
+	height: 18px;
+	padding: 5px;
+	border-radius: 40px;
+	background-color: #fff;
+}
+
+.background-white-gray {
+	background-color: #f2f2f2;
+}
+
+tr.row-line td {
+	border-bottom: 1px solid black;
+	border-radius: 0px;
 }

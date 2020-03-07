@@ -15,17 +15,15 @@
 		<table>
 			<tbody>
 				<tr class="list-item-white">	
-					<td><img src="/user-manager-challenge/img/user_icon.png" class="user-icon"></td>
+					<td><img src="/user-manager-challenge/img/icon_user.png" class="user-icon"></td>
 					<td>${user.id}</td> 
 					<td>${user.name}</td> 
 					<td>${user.email}</td> 
+					<td><a href="edit?id=${user.id}"><img src="/user-manager-challenge/img/icon_edit.png" class="icon-small background-white-gray"></a></td>
+					<td><a href="/user-manager-challenge/phones/new?userId=${user.id}"><img src="/user-manager-challenge/img/icon_new_phone.png" class="icon-small background-white-gray"></a></td>
 				</tr>
 			</tbody>
 		</table>
-		<div class="center">
-			<a href="edit?id=${user.id}">Edit user</a>
-			<a href="/user-manager-challenge/phones/new?userId=${user.id}">Add phone</a>
-		</div>
 		<c:if test="${!empty user.phones}">
 			<table>
 				<thead>
@@ -33,20 +31,23 @@
 						<th>DDD</th>
 						<th>Number</th>
 						<th>Type</th>
-						<th>Actions</th>
+						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach 	var="phone" items="${user.phones}" varStatus="count">
-						<tr>	
+					<c:forEach var="phone" items="${user.phones}" varStatus="count">
+						<tr class="row-line">	
 							<td>${phone.ddd}</td> 
 							<td>${phone.number}</td> 
 							<td>${phone.type}</td> 
 							<td>
-								<a href="/user-manager-challenge/phones/edit?userId=${phone.user.id}&id=${phone.id}">edit</a> 
-								<a href="/user-manager-challenge/phones/delete?userId=${phone.user.id}&id=${phone.id}">delete</a> 
+								<a href="/user-manager-challenge/phones/edit?userId=${phone.user.id}&id=${phone.id}"><img src="/user-manager-challenge/img/icon_edit.png" class="icon-small"></a> 
 							</td>
-						</tr>
+							<td>
+								<a href="/user-manager-challenge/phones/delete?userId=${phone.user.id}&id=${phone.id}"><img src="/user-manager-challenge/img/icon_delete.png" class="icon-small"></a>
+							</td>
+					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
