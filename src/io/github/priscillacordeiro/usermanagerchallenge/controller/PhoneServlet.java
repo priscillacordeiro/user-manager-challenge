@@ -63,7 +63,7 @@ public class PhoneServlet extends HttpServlet {
 		
 		phoneRepository.create(phone);
 		
-		response.sendRedirect("/user-manager-challenge/users/view?id=" + userId);
+		response.sendRedirect(request.getContextPath() + "/users/view?id=" + userId);
 	}
 	
 	private void showPhoneForm(HttpServletRequest request, HttpServletResponse response) 
@@ -79,7 +79,7 @@ public class PhoneServlet extends HttpServlet {
 		Long userId = Long.parseLong(request.getParameter("userId"));
 		
 		request.setAttribute("userId", userId);
-		request.getRequestDispatcher("/phone-form.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/phone-form.jsp").forward(request, response);
 	}
 	
 	private void updatePhone(HttpServletRequest request, HttpServletResponse response) 
@@ -95,7 +95,7 @@ public class PhoneServlet extends HttpServlet {
 		
 		phoneRepository.update(phone);
 		
-		response.sendRedirect("/user-manager-challenge/users/view?id=" + userId);
+		response.sendRedirect(request.getContextPath() + "/users/view?id=" + userId);
 	}
 	
 	private void deletePhone(HttpServletRequest request, HttpServletResponse response) 
@@ -104,7 +104,7 @@ public class PhoneServlet extends HttpServlet {
 		Long id = Long.parseLong(request.getParameter("id"));	
 		
 		phoneRepository.delete(id);
-		response.sendRedirect("/user-manager-challenge/users/view?id=" + userId);
+		response.sendRedirect(request.getContextPath() + "/users/view?id=" + userId);
 	}
 	
 }

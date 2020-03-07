@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/login-form.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/login-form.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
@@ -32,10 +32,10 @@ public class LoginServlet extends HttpServlet {
 		if(user != null && password.equals(user.getPassword())) {
 			HttpSession session = request.getSession();
 			session.setAttribute("name", user.getName());
-			response.sendRedirect("/user-manager-challenge/users/list");
+			response.sendRedirect(request.getContextPath() + "/users/list");
 		} else {
 			request.setAttribute("error", "E-mail or password invalid!");
-			request.getRequestDispatcher("/login-form.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/login-form.jsp").forward(request, response);
 		}
 	}
 

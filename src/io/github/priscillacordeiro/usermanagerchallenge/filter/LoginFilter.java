@@ -26,7 +26,7 @@ public class LoginFilter implements Filter {
 				|| servletPath.equals("/login")) {
 			chain.doFilter(request, response);
 		} else {
-			httpServletResponse.sendRedirect("/user-manager-challenge/login");
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login");
 		}
 	}
 

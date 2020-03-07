@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
 			response.sendRedirect("list");
 		} else {
 			request.setAttribute("error", "E-mail already exists!");
-			request.getRequestDispatcher("/user-form.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/user-form.jsp").forward(request, response);
 		}
 		
 	}
@@ -86,14 +86,14 @@ public class UserServlet extends HttpServlet {
 
 			request.setAttribute("user", user);
 		}
-		request.getRequestDispatcher("/user-form.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/user-form.jsp").forward(request, response);
 	}
 
 	private void showUserList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<User> listUser = userRepository.getAll();
 		request.setAttribute("listUser", listUser);
-		request.getRequestDispatcher("/user-list.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/user-list.jsp").forward(request, response);
 	}
 	
 	private void showUserView(HttpServletRequest request, HttpServletResponse response) 
@@ -102,7 +102,7 @@ public class UserServlet extends HttpServlet {
 		User user = userRepository.getById(id);
 		
 		request.setAttribute("user", user);
-		request.getRequestDispatcher("/user-view.jsp").forward(request, response);
+		request.getRequestDispatcher("/pages/user-view.jsp").forward(request, response);
 	}
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response)
@@ -123,7 +123,7 @@ public class UserServlet extends HttpServlet {
 		} else {
 			request.setAttribute("user", formUser);
 			request.setAttribute("error", "E-mail already exists!");
-			request.getRequestDispatcher("/user-form.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/user-form.jsp").forward(request, response);
 		}
 	}
 
