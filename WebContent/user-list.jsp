@@ -7,11 +7,11 @@
 		<title>User Management</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/user-manager-challenge/css/main.css">
+		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
 		<div class="center">
-			<img src="/user-manager-challenge/img/logo.png" class="logo">
+			<img src="/img/logo.png" class="logo">
 			<p class="user-greeting">Hi, ${name}!</p>
 		</div>	
 		<table>
@@ -28,7 +28,7 @@
 					<tr onclick="location.href = 'view?id=${user.id}'" 
 						class="${(count.index % 2 == 0) ? 'list-item-white' : 'list-item-lilac'} cursor-pointer">	
 						
-						<td><img src="/user-manager-challenge/img/icon_user.png" class="user-icon"></td>
+						<td><img src="/img/icon_user.png" class="user-icon"></td>
 						<td>${user.id}</td> 
 						<td>${user.name}</td> 
 						<td>${user.email}</td> 
@@ -38,7 +38,7 @@
 		</table>
 		<div class="center footer">
 			<a class="link-button link-button-margin" href="new">New user</a>
-			<a class="link-button logout" href="/user-manager-challenge/logout">Logout</a>
+			<a class="link-button logout" href="/logout">Logout</a>
 		</div>	
 	</body>
 </html>

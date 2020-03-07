@@ -180,12 +180,12 @@ td:last-child {
 }
 
 .user-login-icon {
-  background: url(/user-manager-challenge/img/icon_user.png) no-repeat scroll 4px 4px;
+  background: url(/img/icon_user.png) no-repeat scroll 4px 4px;
   background-size: 24px 24px;
 }
 
 .password-login-icon {
-  background: url(/user-manager-challenge/img/icon_password.png) no-repeat scroll 6px 6px;
+  background: url(/img/icon_password.png) no-repeat scroll 6px 6px;
   background-size: 20px 20px;
 }
 

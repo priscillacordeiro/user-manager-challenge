@@ -7,11 +7,11 @@
 		<title>User phone management</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/user-manager-challenge/css/main.css">
+		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
 		<div class="center">
-			<img src="/user-manager-challenge/img/logo.png" class="logo">
+			<img src="/img/logo.png" class="logo">
 		</div>
 		<div class="center">
 			<c:if test="${phone == null}">
@@ -43,7 +43,7 @@
 			</form>
 		</div>
 		<div class="center footer">
-			<a class="link-button" href="/user-manager-challenge/users/view?id=${userId}">Back</a>
+			<a class="link-button" href="/users/view?id=${userId}">Back</a>
 		</div>
 	</body>
 </html>
