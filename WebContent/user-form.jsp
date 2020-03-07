@@ -6,6 +6,7 @@
 	<head>
 		<title>User Management</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="/user-manager-challenge/css/main.css">
 	</head>
 	<body>
@@ -45,9 +46,18 @@
 				<a class="link-button" href="list">Back</a> 
 			</c:if>
 			<c:if test="${user != null}">
-				<a class="link-button" href="view?id=${user.id}">Back</a> 	
-				<a class="link-delete" href="delete?id=${user.id}">Delete user</a>
+				<a class="link-button link-button-margin" href="view?id=${user.id}">Back</a> 	
+			    <a class="link-delete" id="myBtn" href="javascript: void(0)">Delete user</a>
 			</c:if>
 		</div>	
+		<div id="myModal" class="modal">
+			<div class="modal-content center">
+				<p>Do you really want to delete this <strong>user</strong>?</p>
+				<br>
+			    <a class="modal-button yes-label" href="delete?id=${user.id}">Yes</a>
+			    <a class="modal-button close no-label" href="javascript: void(0)">No</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="/user-manager-challenge/js/main.js"></script>
 	</body>
 </html>

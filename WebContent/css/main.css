@@ -79,7 +79,7 @@ td:last-child {
   margin-bottom: 30px;
 }
 
-.link-button:link, .link-button:visited{
+.link-button:link, .link-button:visited {
   color: #000;
   width: 100px;
   border-radius: 20px;
@@ -92,6 +92,10 @@ td:last-child {
   text-align: center;
   text-decoration: none;
   display: inline-block;
+}
+
+.link-button-margin {
+	margin-right: 50px;
 }
 
 .logout:link, .logout:visited {
@@ -215,4 +219,48 @@ td:last-child {
 tr.row-line td {
 	border-bottom: 1px solid black;
 	border-radius: 0px;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  border-radius: 20px;
+  background-color: #e0c3e9;
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.modal-button:link, .modal-button:visited {
+  width: 100px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.yes-label {
+  font-weight: bold;
+  color: #b33f3f;
+}
+
+.no-label {
+  font-weight: bold;
+  color: black;
 }

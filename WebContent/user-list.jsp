@@ -6,6 +6,7 @@
 	<head>
 		<title>User Management</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="/user-manager-challenge/css/main.css">
 	</head>
 	<body>
@@ -36,7 +37,7 @@
 			</tbody>
 		</table>
 		<div class="center footer">
-			<a class="link-button" href="new">New user</a>
+			<a class="link-button link-button-margin" href="new">New user</a>
 			<a class="link-button logout" href="/user-manager-challenge/logout">Logout</a>
 		</div>	
 	</body>
