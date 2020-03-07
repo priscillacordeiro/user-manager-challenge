@@ -7,12 +7,12 @@
 		<title>User Manager - Login</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/user-manager-challenge/css/main.css">
+		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
 		<div class="center login-section">
-			<img src="/user-manager-challenge/img/home_logo.png" class="home-logo">
-			<form action="/user-manager-challenge/login" method="post">
+			<img src="/img/home_logo.png" class="home-logo">
+			<form action="/login" method="post">
 				<div class="form-line">
 					<input class="form-input-login user-login-icon" type="email" name="email" placeholder="E-mail" required/>
 				</div>
