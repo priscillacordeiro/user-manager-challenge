@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import io.github.priscillacordeiro.usermanagerchallenge.exception.EmailAlreadyExistsException;
+import io.github.priscillacordeiro.usermanagerchallenge.exception.UserNotFound;
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
 import io.github.priscillacordeiro.usermanagerchallenge.service.UserService;
 
@@ -22,23 +24,26 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getPathInfo();
-
-		switch (action) {
-		case "/new":
-			showUserForm(request, response);
-			break;
-		case "/list":
-			showUserList(request, response);
-			break;
-		case "/view":
-			showUserView(request, response);
-			break;
-		case "/edit":
-			showUserForm(request, response);
-			break;
-		case "/delete":
-			deleteUser(request, response);
-			break;
+		try {
+			switch (action) {
+			case "/new":
+				showUserForm(request, response);
+				break;
+			case "/list":
+				showUserList(request, response);
+				break;
+			case "/view":
+				showUserView(request, response);
+				break;
+			case "/edit":
+				showUserForm(request, response);
+				break;
+			case "/delete":
+				deleteUser(request, response);
+				break;
+			}
+		} catch (UserNotFound e) {
+            throw new ServletException(e);
 		}
 	}
 
@@ -65,16 +70,13 @@ public class UserServlet extends HttpServlet {
 		
 		User user = new User(name, email, password);
 		
-		User savedUser = userService.getByEmail(email);
-		
-		if(savedUser == null) {
+		try {
 			userService.create(user);
 			response.sendRedirect("list");
-		} else {
-			request.setAttribute("error", "E-mail already exists!");
+		} catch (EmailAlreadyExistsException e){
+			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher("/pages/user-form.jsp").forward(request, response);
-		}
-		
+		}		
 	}
 
 	private void showUserForm(HttpServletRequest request, HttpServletResponse response)
@@ -114,15 +116,12 @@ public class UserServlet extends HttpServlet {
 		
 		User formUser = new User(id, name, email, password);
 		
-		User emailUser = userService.getByEmail(email);
-		User originalUser = userService.getById(id);
-		
-		if(originalUser.getEmail().equals(email) || emailUser == null) {
+		try {
 			userService.update(formUser);
 			response.sendRedirect("view?id=" + id);
-		} else {
+		} catch (EmailAlreadyExistsException e) {
 			request.setAttribute("user", formUser);
-			request.setAttribute("error", "E-mail already exists!");
+			request.setAttribute("error", e.getMessage());
 			request.getRequestDispatcher("/pages/user-form.jsp").forward(request, response);
 		}
 	}
