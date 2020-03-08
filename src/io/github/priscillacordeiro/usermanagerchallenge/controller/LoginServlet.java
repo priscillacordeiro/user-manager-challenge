@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
-import io.github.priscillacordeiro.usermanagerchallenge.repository.UserRepository;
+import io.github.priscillacordeiro.usermanagerchallenge.service.UserService;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private UserRepository userRepository = new UserRepository();
+	private UserService userService = new UserService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		User user = userRepository.getByEmail(email);
+		User user = userService.getByEmail(email);
 		
 		if(user != null && password.equals(user.getPassword())) {
 			HttpSession session = request.getSession();

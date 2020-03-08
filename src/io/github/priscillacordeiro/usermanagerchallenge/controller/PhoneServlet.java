@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import io.github.priscillacordeiro.usermanagerchallenge.model.Phone;
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
-import io.github.priscillacordeiro.usermanagerchallenge.repository.PhoneRepository;
+import io.github.priscillacordeiro.usermanagerchallenge.service.PhoneService;
 
 @WebServlet("/phones/*")
 public class PhoneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private PhoneRepository phoneRepository = new PhoneRepository();
+	private PhoneService phoneService = new PhoneService();
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -61,7 +61,7 @@ public class PhoneServlet extends HttpServlet {
 		User user = new User(userId);
 		Phone phone = new Phone(ddd, number, type, user);
 		
-		phoneRepository.create(phone);
+		phoneService.create(phone);
 		
 		response.sendRedirect(request.getContextPath() + "/users/view?id=" + userId);
 	}
@@ -71,7 +71,7 @@ public class PhoneServlet extends HttpServlet {
 		
 		if (request.getParameter("id") != null) {
 			Long id = Long.parseLong(request.getParameter("id"));
-			Phone phone = phoneRepository.getById(id);
+			Phone phone = phoneService.getById(id);
 			
 			request.setAttribute("phone", phone);
 		}
@@ -93,7 +93,7 @@ public class PhoneServlet extends HttpServlet {
 		User user = new User(userId);
 		Phone phone = new Phone(id, ddd, number, type, user);
 		
-		phoneRepository.update(phone);
+		phoneService.update(phone);
 		
 		response.sendRedirect(request.getContextPath() + "/users/view?id=" + userId);
 	}
@@ -103,7 +103,7 @@ public class PhoneServlet extends HttpServlet {
 		Long userId = Long.parseLong(request.getParameter("userId"));
 		Long id = Long.parseLong(request.getParameter("id"));	
 		
-		phoneRepository.delete(id);
+		phoneService.delete(id);
 		response.sendRedirect(request.getContextPath() + "/users/view?id=" + userId);
 	}
 	

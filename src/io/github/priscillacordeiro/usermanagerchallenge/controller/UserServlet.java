@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
-import io.github.priscillacordeiro.usermanagerchallenge.repository.UserRepository;
+import io.github.priscillacordeiro.usermanagerchallenge.service.UserService;
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private UserRepository userRepository = new UserRepository();
+	private UserService userService = new UserService();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -65,10 +65,10 @@ public class UserServlet extends HttpServlet {
 		
 		User user = new User(name, email, password);
 		
-		User savedUser = userRepository.getByEmail(email);
+		User savedUser = userService.getByEmail(email);
 		
 		if(savedUser == null) {
-			userRepository.create(user);
+			userService.create(user);
 			response.sendRedirect("list");
 		} else {
 			request.setAttribute("error", "E-mail already exists!");
@@ -82,7 +82,7 @@ public class UserServlet extends HttpServlet {
 
 		if (request.getParameter("id") != null) {
 			Long id = Long.parseLong(request.getParameter("id"));
-			User user = userRepository.getById(id);
+			User user = userService.getById(id);
 
 			request.setAttribute("user", user);
 		}
@@ -91,7 +91,7 @@ public class UserServlet extends HttpServlet {
 
 	private void showUserList(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<User> listUser = userRepository.getAll();
+		List<User> listUser = userService.getAll();
 		request.setAttribute("listUser", listUser);
 		request.getRequestDispatcher("/pages/user-list.jsp").forward(request, response);
 	}
@@ -99,7 +99,7 @@ public class UserServlet extends HttpServlet {
 	private void showUserView(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
-		User user = userRepository.getById(id);
+		User user = userService.getById(id);
 		
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("/pages/user-view.jsp").forward(request, response);
@@ -114,11 +114,11 @@ public class UserServlet extends HttpServlet {
 		
 		User formUser = new User(id, name, email, password);
 		
-		User emailUser = userRepository.getByEmail(email);
-		User originalUser = userRepository.getById(id);
+		User emailUser = userService.getByEmail(email);
+		User originalUser = userService.getById(id);
 		
 		if(originalUser.getEmail().equals(email) || emailUser == null) {
-			userRepository.update(formUser);
+			userService.update(formUser);
 			response.sendRedirect("view?id=" + id);
 		} else {
 			request.setAttribute("user", formUser);
@@ -131,7 +131,7 @@ public class UserServlet extends HttpServlet {
 		throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));	
 		
-		userRepository.delete(id);
+		userService.delete(id);
 		response.sendRedirect("list");	
 	}
 	

@@ -20,7 +20,7 @@ The system includes the following features:
 
 - Prototyping HTML screens in Adobe XD and Zeplin
 - Java Enterprise Edition (Java EE)
-- Layered architecture: Controller, Repository (DAO) and Model
+- Layered architecture: Controller, Service, Repository (DAO) and Model
 - MySQL database
 - Data persistence using JPA / Hibernate
 - Interface using JSP with CSS and JavaScript
