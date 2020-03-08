@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.github.priscillacordeiro.usermanagerchallenge.exception.EmailAlreadyExistsException;
-import io.github.priscillacordeiro.usermanagerchallenge.exception.UserNotFound;
+import io.github.priscillacordeiro.usermanagerchallenge.exception.UserNotFoundException;
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
 import io.github.priscillacordeiro.usermanagerchallenge.service.UserService;
 
@@ -42,7 +42,7 @@ public class UserServlet extends HttpServlet {
 				deleteUser(request, response);
 				break;
 			}
-		} catch (UserNotFound e) {
+		} catch (UserNotFoundException e) {
             throw new ServletException(e);
 		}
 	}

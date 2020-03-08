@@ -4,7 +4,7 @@ import java.util.List;
 
 import io.github.priscillacordeiro.usermanagerchallenge.exception.EmailAlreadyExistsException;
 import io.github.priscillacordeiro.usermanagerchallenge.exception.InvalidLoginException;
-import io.github.priscillacordeiro.usermanagerchallenge.exception.UserNotFound;
+import io.github.priscillacordeiro.usermanagerchallenge.exception.UserNotFoundException;
 import io.github.priscillacordeiro.usermanagerchallenge.model.User;
 import io.github.priscillacordeiro.usermanagerchallenge.repository.UserRepository;
 
@@ -24,10 +24,10 @@ public class UserService {
 		return userRepository.getAll();
 	}
 	
-	public User getById(Long id) throws UserNotFound {
+	public User getById(Long id) throws UserNotFoundException {
 		User user = userRepository.getById(id);
 		if(user == null) {
-			throw new UserNotFound("User not found!");
+			throw new UserNotFoundException("User not found!");
 		}
 		return user;
 	}
